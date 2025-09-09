@@ -1,11 +1,14 @@
 package com.ifpr.androidapptemplate.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.FirebaseApp
 import com.ifpr.androidapptemplate.R
+import com.ifpr.androidapptemplate.ui.usuario.CadastroUsuarioActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -19,9 +22,20 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        FirebaseApp.initializeApp(this)
+
         emailEditText = findViewById(R.id.edit_text_email)
         passwordEditText = findViewById(R.id.edit_text_password)
         loginButton = findViewById(R.id.button_login)
         registerLink = findViewById(R.id.registerLink)
+
+        val registerLink: TextView = findViewById(R.id.registerLink)
+        registerLink.setOnClickListener {
+            val intent: Intent = Intent(
+                applicationContext,
+                CadastroUsuarioActivity::class.java
+            )
+            startActivity(intent)
+        }
     }
 }
