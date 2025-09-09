@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:padding="10dp"
     android:fitsSystemWindows="true"
+    android:background="@drawable/fundo"
     tools:context=".ui.usuario.CadastroUsuarioActivity">
 
     <TextView
@@ -17,6 +18,7 @@
         android:text="Cadastro de Usuário"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +28,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Nome"
+        android:background="@android:drawable/edit_text"
         android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textCadastroUsuarioTitle"/>
@@ -37,6 +42,9 @@
         android:layout_height="wrap_content"
         android:hint="Email"
         android:inputType="textEmailAddress"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintTop_toBottomOf="@id/registerNameEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -47,6 +55,9 @@
         android:layout_height="wrap_content"
         android:hint="Senha"
         android:inputType="textPassword"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintTop_toBottomOf="@id/registerEmailEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -57,6 +68,9 @@
         android:layout_height="wrap_content"
         android:hint="Confirmar Senha"
         android:inputType="textPassword"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintTop_toBottomOf="@id/registerPasswordEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -67,6 +81,9 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#4CAF50"
         android:text="Cadastrar"
+        android:textColor="@android:color/white"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/registerConfirmPasswordEditText" />
@@ -77,7 +94,11 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#FF9800"
         android:text="Sair"
+        android:textColor="@android:color/white"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/salvarButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
