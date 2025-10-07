@@ -19,9 +19,9 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        emailEditText = findViewById(R.id.edit_text_email)
-        passwordEditText = findViewById(R.id.edit_text_password)
-        loginButton = findViewById(R.id.button_login)
-        registerLink = findViewById(R.id.registerLink)
+        emailEditText = findViewById(R.id.editTextEmail)
+        passwordEditText = findViewById(R.id.editTextPassword)
+        loginButton = findViewById(R.id.buttonLogin)
+        registerLink = findViewById(R.id.buttonRegister)
     }
 }
