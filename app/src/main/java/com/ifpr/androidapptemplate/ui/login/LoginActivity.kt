@@ -1,5 +1,6 @@
 package com.ifpr.androidapptemplate.ui.login
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -38,6 +39,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -47,13 +49,13 @@ class LoginActivity : AppCompatActivity() {
         // Inicializa o Firebase Auth
         firebaseAuth = FirebaseAuth.getInstance()
 
-        emailEditText = findViewById(R.id.edit_text_email)
-        passwordEditText = findViewById(R.id.edit_text_password)
-        loginButton = findViewById(R.id.button_login)
-        registerLink = findViewById(R.id.registerLink)
+        emailEditText = findViewById(R.id.editTextEmail)
+        passwordEditText = findViewById(R.id.editTextPassword)
+        loginButton = findViewById(R.id.buttonLogin)
+        registerLink = findViewById(R.id.buttonRegister)
         btnGoogleSignIn = findViewById<SignInButton>(R.id.btnGoogleSignIn)
 
-        val registerLink: TextView = findViewById(R.id.registerLink)
+        val registerLink: TextView = findViewById(R.id.buttonRegister)
         registerLink.setOnClickListener {
             val intent: Intent = Intent(
                 applicationContext,
