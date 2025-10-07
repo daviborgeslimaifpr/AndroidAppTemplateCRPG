@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Fundo -->
-    <ImageView
-        android:id="@+id/backgroundImage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/background" />
 
     <!-- Container translúcido para campos -->
     <LinearLayout
@@ -21,7 +16,7 @@
         android:layout_centerInParent="true">
 
         <EditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="E-mail"
@@ -40,7 +35,7 @@
             android:layout_marginTop="12dp" />
 
         <Button
-            android:id="@+id/buttonLogin"
+            android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Login"
@@ -48,12 +43,23 @@
             android:backgroundTint="#4CAF50" />
 
         <Button
-            android:id="@+id/buttonRegister"
+            android:id="@+id/registerLink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cadastrar"
             android:layout_marginTop="8dp"
             android:backgroundTint="#FF9800" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/btnGoogleSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Login com Google"
+            app:layout_constraintTop_toBottomOf="@id/registerLink"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints" />
 
     </LinearLayout>
 

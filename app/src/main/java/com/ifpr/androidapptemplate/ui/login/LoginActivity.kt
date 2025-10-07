@@ -49,13 +49,13 @@ class LoginActivity : AppCompatActivity() {
         // Inicializa o Firebase Auth
         firebaseAuth = FirebaseAuth.getInstance()
 
-        emailEditText = findViewById(R.id.editTextEmail)
+        emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.editTextPassword)
-        loginButton = findViewById(R.id.buttonLogin)
-        registerLink = findViewById(R.id.buttonRegister)
+        loginButton = findViewById(R.id.loginButton)
+        registerLink = findViewById(R.id.registerLink)
         btnGoogleSignIn = findViewById<SignInButton>(R.id.btnGoogleSignIn)
 
-        val registerLink: TextView = findViewById(R.id.buttonRegister)
+        val registerLink: TextView = findViewById(R.id.registerLink)
         registerLink.setOnClickListener {
             val intent: Intent = Intent(
                 applicationContext,
