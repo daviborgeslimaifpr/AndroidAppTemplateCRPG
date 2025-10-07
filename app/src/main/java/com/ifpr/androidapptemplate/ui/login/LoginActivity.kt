@@ -1,5 +1,6 @@
 package com.ifpr.androidapptemplate.ui.login
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -15,13 +16,14 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var registerLink: TextView
 
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        emailEditText = findViewById(R.id.editTextEmail)
-        passwordEditText = findViewById(R.id.editTextPassword)
-        loginButton = findViewById(R.id.buttonLogin)
-        registerLink = findViewById(R.id.buttonRegister)
+        emailEditText = findViewById(R.id.emailEditText)
+        passwordEditText = findViewById(R.id.passwordEditText)
+        loginButton = findViewById(R.id.loginButton)
+        registerLink = findViewById(R.id.registerLink)
     }
 }
