@@ -1,20 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="@drawable/fundo_cadastro"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.usuario.LoginActivity">
 
+    <!-- Camada escura semi-transparente sobre a imagem -->
+    <View
+        android:id="@+id/overlayView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B3000000" /> <!-- preto 70% transparente -->
 
-    <!-- Container translúcido para campos -->
+    <!-- Conteúdo central -->
     <LinearLayout
+        android:id="@+id/containerCampos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="24dp"
-        android:background="#80FFFFFF"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:background="#33000000"
+        android:layout_marginHorizontal="32dp"
+        android:elevation="6dp"
+        android:clipToOutline="true">
 
+        <!-- Título -->
+        <TextView
+            android:id="@+id/textLoginTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login do Usuário"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Campo de e-mail -->
         <EditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
@@ -22,8 +49,12 @@
             android:hint="E-mail"
             android:inputType="textEmailAddress"
             android:padding="12dp"
-            android:background="@android:drawable/edit_text" />
+            android:background="@drawable/edittext_background"
+            android:textColor="@android:color/white"
+            android:textColorHint="#DDDDDD"
+            android:layout_marginBottom="12dp" />
 
+        <!-- Campo de senha -->
         <EditText
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
@@ -31,35 +62,40 @@
             android:hint="Senha"
             android:inputType="textPassword"
             android:padding="12dp"
-            android:background="@android:drawable/edit_text"
-            android:layout_marginTop="12dp" />
+            android:background="@drawable/edittext_background"
+            android:textColor="@android:color/white"
+            android:textColorHint="#DDDDDD"
+            android:layout_marginBottom="16dp" />
 
+        <!-- Botão de login -->
         <Button
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#4CAF50" />
+            android:text="Entrar"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#4CAF50"
+            android:layout_marginBottom="10dp" />
 
+        <!-- Botão de cadastro -->
         <Button
             android:id="@+id/registerLink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cadastrar"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="#FF9800" />
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#FF9800"
+            android:layout_marginBottom="20dp" />
 
+        <!-- Botão Google -->
         <com.google.android.gms.common.SignInButton
             android:id="@+id/btnGoogleSignIn"
-            android:layout_width="358dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Login com Google"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/registerLink"
-            tools:ignore="MissingConstraints" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp" />
 
     </LinearLayout>
 
