@@ -4,6 +4,8 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+    <string name="default_web_client_id">794205976840-oc95ippipm55llsgmv94br6rvukc8hil.apps.googleusercontent.com</string>
+
     <!-- Home -->
     <string name="welcome_home">Seja bem vindo ao aplicativo </string>
 </resources>
