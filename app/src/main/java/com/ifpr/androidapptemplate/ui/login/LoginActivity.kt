@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -19,18 +20,15 @@ import com.ifpr.androidapptemplate.R
 
 class LoginActivity : AppCompatActivity() {
 
-    // Referências da interface
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: Button
-    private lateinit var registerLink: Button
+    private lateinit var registerLink: TextView
     private lateinit var btnGoogleSignIn: SignInButton
 
-    // Firebase e Google
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
 
-    // Novo método moderno de resultado de Activity (sem deprecated)
     private val signInLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
@@ -38,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
                 val task = GoogleSignIn.getSignedInAccountFromIntent(data)
                 try {
                     val account = task.getResult(ApiException::class.java)
-                    firebaseAuthWithGoogle(account.idToken!!)
+                    account?.idToken?.let { firebaseAuthWithGoogle(it) }
                 } catch (e: ApiException) {
                     Toast.makeText(this, "Google sign-in falhou: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
@@ -49,25 +47,27 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // Inicializar componentes da tela
-        emailEditText = findViewById(R.id.emailEditText)
-        passwordEditText = findViewById(R.id.passwordEditText)
-        loginButton = findViewById(R.id.loginButton)
+        // Inicialização do Firebase Auth
+        auth = FirebaseAuth.getInstance()
+
+        // Referências de layout
+        emailEditText = findViewById(R.id.edit_text_email)
+        passwordEditText = findViewById(R.id.edit_text_password)
+        loginButton = findViewById(R.id.button_login)
         registerLink = findViewById(R.id.registerLink)
         btnGoogleSignIn = findViewById(R.id.btnGoogleSignIn)
 
-        // Firebase Auth
-        auth = FirebaseAuth.getInstance()
-
-        // Configurar login com Google
+        // Configuração do Google Sign-In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id)) // vem do strings.xml configurado no Firebase
+            .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        // 🔹 Login com e-mail e senha
+        btnGoogleSignIn.setSize(SignInButton.SIZE_WIDE)
+        btnGoogleSignIn.setColorScheme(SignInButton.COLOR_DARK)
+
+        // Login com email e senha
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString().trim()
             val senha = passwordEditText.text.toString().trim()
@@ -77,39 +77,38 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            auth.signInWithEmailAndPassword(email, senha)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, MainActivity::class.java))
-                        finish()
-                    } else {
-                        Toast.makeText(
-                            this,
-                            "Erro no login: ${task.exception?.message}\nVerifique seu e-mail e senha",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+            auth.signInWithEmailAndPassword(email, senha).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Erro no login: ${task.exception?.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
+            }
         }
 
-        // 🔹 Abrir tela de cadastro
+        // Link para cadastro
         registerLink.setOnClickListener {
             startActivity(Intent(this, CadastroUsuarioActivity::class.java))
         }
 
-        // 🔹 Login com Google
+        // Login com Google
         btnGoogleSignIn.setOnClickListener {
             val signInIntent = googleSignInClient.signInIntent
             signInLauncher.launch(signInIntent)
         }
     }
 
-    // Autenticação Firebase com Google ID Token
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
+                Toast.makeText(this, "Login com Google realizado!", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             } else {
